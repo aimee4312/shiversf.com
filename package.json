@@ -1,6 +1,15 @@
 {
+  "name": "shiversf",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "build": "next build"
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next export"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   }
 }
-export default nextConfig
