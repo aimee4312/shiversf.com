@@ -105,6 +105,10 @@ a{color:inherit;text-decoration:none;}
   background-color: var(--white);
 }
 
+
+.gallery-card[style*="--bg-img"] {
+  background: var(--bg-img) center/100% auto no-repeat, linear-gradient(155deg,#bccad8,#ccd6e4);
+}
 .gallery-card[style*="background-image"] {
   background-size: cover;
   background-position: center;
@@ -172,11 +176,11 @@ footer{
 </section>
 
 <section class="city-gallery">
-  <div class="gallery-card" style="background-image: url('img/popup/fidi-poster.png');">
+  <div class="gallery-card" style="--bg-img: url('img/popup/fidi-poster.png');">
     <div class="gallery-label">Poster</div>
   </div>
 
-  <div class="gallery-card menu-slideshow-trigger" style="background-image: url('img/popup/fidi-menu-1.png'); cursor:pointer;" onclick="openMenuSlideshow()">
+  <div class="gallery-card menu-slideshow-trigger" style="--bg-img: url('img/popup/fidi-menu-1.png'); cursor:pointer;" onclick="openMenuSlideshow()">
     <div class="gallery-label">Menu</div>
   </div>
 
