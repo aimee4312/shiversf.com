@@ -641,7 +641,19 @@ async function splash() {
   setTimeout(() => sp.style.display = 'none', 1100);
 }
 
-window.addEventListener('load', splash);
+window.addEventListener('load', function(){
+  if (sessionStorage.getItem('shiverVisited')) {
+    const sp = document.getElementById('splash');
+    if (sp) sp.style.display = 'none';
+    const site = document.getElementById('site');
+    if (site) site.classList.add('visible');
+    const bb = document.getElementById('branch-bar');
+    if (bb) bb.classList.add('visible');
+  } else {
+    sessionStorage.setItem('shiverVisited', '1');
+    splash();
+  }
+});
 
 // ── Branch Scroll Signifier ──
 (function(){
