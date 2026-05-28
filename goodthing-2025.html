@@ -49,6 +49,11 @@ a{color:inherit;text-decoration:none;}
   background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,0.22) 100%);
   pointer-events:none;
 }
+.hero-header-container {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
 .hero-subtitle{
   font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
   color:rgba(255,255,255,0.55);margin-bottom:16px;
@@ -143,9 +148,11 @@ footer{
 </nav>
 
 <section class="city-hero">
-  <div class="hero-subtitle">SHIVER Specialty Coffee &nbsp;·&nbsp; Goodthing Coffee 2</div>
   <h1 class="hero-title">Palo Alto</h1>
-  <div class="hero-season">2025 Fall</div>
+  <div class="hero-header-container">
+    <div class="hero-season">2025 Fall</div>
+    <div class="hero-subtitle">SHIVER Specialty Coffee &nbsp;·&nbsp; Goodthing Coffee 2</div>
+  </div>
 </section>
 
 <section class="city-content">
