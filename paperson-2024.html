@@ -172,11 +172,11 @@ footer{
 </section>
 
 <section class="city-gallery">
-  <div class="gallery-card" style="background-image: url('img/popup/ps-24/placeholder-team.jpg');">
+  <div class="gallery-card" style="background-image: url('img/popup/fidi-poster.png');">
     <div class="gallery-label">Poster</div>
   </div>
 
-  <div class="gallery-card" style="background-image: url('img/popup/ps-24/placeholder-team.jpg');">
+  <div class="gallery-card menu-slideshow-trigger" style="background-image: url('img/popup/fidi-menu-1.png'); cursor:pointer;" onclick="openMenuSlideshow()">
     <div class="gallery-label">Menu</div>
   </div>
 
@@ -197,5 +197,81 @@ footer{
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 </script>
+
+<!-- Menu slideshow modal -->
+<style>
+.menu-modal {
+  display: none;
+  position: fixed; top:0; left:0; width:100vw; height:100vh;
+  background: rgba(20,30,80,0.92);
+  z-index: 9999;
+  align-items: center; justify-content: center;
+}
+.menu-modal.open { display: flex; }
+.menu-modal-img {
+  max-width: 86vw; max-height: 86vh;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border-radius: 4px;
+}
+.menu-modal-btn {
+  position: absolute;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: white;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.menu-modal-btn:hover { background: rgba(255,255,255,0.25); }
+.menu-modal-prev { left: 30px; top: 50%; transform: translateY(-50%); }
+.menu-modal-next { right: 30px; top: 50%; transform: translateY(-50%); }
+.menu-modal-close { top: 24px; right: 30px; }
+.menu-modal-count {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  color: white; font-size: 12px; letter-spacing: 0.2em;
+  opacity: 0.7;
+}
+@media (max-width: 680px) {
+  .menu-modal-prev { left: 12px; }
+  .menu-modal-next { right: 12px; }
+  .menu-modal-close { top: 14px; right: 14px; }
+}
+.gallery-card.menu-slideshow-trigger { transition: transform 0.2s; }
+.gallery-card.menu-slideshow-trigger:hover { transform: scale(1.02); }
+</style>
+
+<div class="menu-modal" id="menuModal" onclick="if(event.target===this) closeMenuSlideshow()">
+  <button class="menu-modal-btn menu-modal-close" onclick="closeMenuSlideshow()" aria-label="Close">×</button>
+  <button class="menu-modal-btn menu-modal-prev" onclick="prevMenu()" aria-label="Previous">‹</button>
+  <img class="menu-modal-img" id="menuModalImg" src="" alt="Menu">
+  <button class="menu-modal-btn menu-modal-next" onclick="nextMenu()" aria-label="Next">›</button>
+  <div class="menu-modal-count" id="menuModalCount">1 / 3</div>
+</div>
+
+<script>
+(function(){
+  const menus = ['img/popup/fidi-menu-1.png','img/popup/fidi-menu-2.png','img/popup/fidi-menu-3.png'];
+  let idx = 0;
+  const modal = document.getElementById('menuModal');
+  const img = document.getElementById('menuModalImg');
+  const count = document.getElementById('menuModalCount');
+  function render(){ img.src = menus[idx]; count.textContent = (idx+1) + ' / ' + menus.length; }
+  window.openMenuSlideshow = function(){ idx = 0; render(); modal.classList.add('open'); document.body.style.overflow='hidden'; };
+  window.closeMenuSlideshow = function(){ modal.classList.remove('open'); document.body.style.overflow=''; };
+  window.nextMenu = function(){ idx = (idx+1) % menus.length; render(); };
+  window.prevMenu = function(){ idx = (idx-1+menus.length) % menus.length; render(); };
+  document.addEventListener('keydown', function(e){
+    if(!modal.classList.contains('open')) return;
+    if(e.key==='Escape') closeMenuSlideshow();
+    if(e.key==='ArrowRight') nextMenu();
+    if(e.key==='ArrowLeft') prevMenu();
+  });
+})();
+</script>
+
 </body>
 </html>
