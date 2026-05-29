@@ -370,6 +370,7 @@ a.j-card{display:block;text-decoration:none;color:inherit;cursor:pointer;}
   object-fit: cover;
   display: block;
 }
+.j-card img[src*="fidi-thumb"] { object-position: center 70%; }
 .j-card:nth-child(1){background:linear-gradient(160deg,var(--blue) 0%,var(--blue-mid1) 100%)}
 .j-card:nth-child(2){background:linear-gradient(160deg,var(--blue-mid1) 0%,var(--blue-mid2) 100%)}
 .j-card:nth-child(3){background:linear-gradient(160deg,var(--blue-mid2) 0%,var(--blue-light) 100%)}
@@ -467,7 +468,7 @@ footer{
   </div>
   <img id="logo-full" src="img/logo/logo-splash.png" alt="">
 </div>
-  <img id="sp-name" src="img/logo/logo-1.png" alt="SHIVER">
+  
   <div id="sp-rule"></div>
   <div id="sp-tag">Specialty Coffee</div>
 </div>
@@ -627,7 +628,7 @@ async function splash() {
 
   // Stage 4: SHIVER branding fades in
   await d(950);
-  name.classList.add('show');
+  if (name) name.classList.add('show');
   await d(380);
   rule.classList.add('show');
   await d(280);
